@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f2eb">
+<title>A Special Day for You ♡</title>
+<style>
+:root{
+  --cream:#f8f2eb; --paper:#fffdfa; --beige:#e9ddd1; --rose:#c98f8b;
+  --rose-dark:#a96f70; --ink:#51443e; --muted:#8e7b72; --line:#eadfd6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family: "Avenir Next",Avenir,"Segoe UI",sans-serif;color:var(--ink)}
+body{
+  min-height:100vh;display:grid;place-items:center;padding:22px;
+  background:radial-gradient(ellipse at 15% 15%,#fffaf5 0,transparent 42%),
+             radial-gradient(ellipse at 85% 85%,#f0dfd9 0,transparent 38%),var(--cream);
+  overflow-x:hidden;
+}
+.shell{width:min(100%,560px);position:relative}
+.topline{display:flex;justify-content:space-between;align-items:center;margin:0 5px 15px;color:var(--muted);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.brand{font-family:Georgia,serif;font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;color:var(--rose-dark)}
+.progress{height:3px;background:#e9ded5;border-radius:99px;overflow:hidden;margin:0 5px 15px}
+.progress span{display:block;height:100%;width:25%;background:var(--rose);border-radius:99px;transition:width .55s ease}
+.card{
+  position:relative;min-height:570px;background:rgba(255,253,250,.88);
+  border:1px solid rgba(220,202,190,.7);border-radius:27px;
+  box-shadow:0 24px 70px rgba(105,78,66,.09);padding:clamp(28px,7vw,52px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  overflow:hidden;backdrop-filter:blur(8px)
+}
+.card:before,.card:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #f0e5dd;border-radius:50%;pointer-events:none}
+.card:before{top:-115px;left:-90px}.card:after{bottom:-125px;right:-90px}
+.screen{display:none;width:100%;animation:rise .65s ease both}
+.screen.active{display:flex;flex-direction:column;align-items:center}
+@keyframes rise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:10px;letter-spacing:.23em;text-transform:uppercase;color:var(--rose-dark);margin-bottom:24px}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.14;margin:0;color:#574740}
+h1{font-size:clamp(39px,9vw,59px);letter-spacing:-.04em}
+h2{font-size:clamp(31px,7vw,43px);letter-spacing:-.025em}
+.subtitle{font-family:Georgia,serif;font-style:italic;color:var(--rose-dark);font-size:20px;margin:15px 0 0}
+.copy{max-width:390px;color:#78685f;font-size:15px;line-height:1.9;margin:18px auto 0}
+.flower{width:128px;height:128px;border-radius:50%;background:#f6eae5;display:grid;place-items:center;margin:0 auto 28px;position:relative}
+.flower:before,.flower:after{content:"";position:absolute;border:1px solid #e8cfc9;border-radius:50%;inset:9px}
+.flower:after{inset:-8px;border-color:#f0e4dc}
+.flower svg{width:72px;height:72px}
+.btn{
+  appearance:none;border:0;border-radius:99px;background:var(--rose-dark);color:white;
+  padding:14px 25px;font-size:13px;letter-spacing:.04em;cursor:pointer;
+  box-shadow:0 8px 20px rgba(169,111,112,.2);transition:transform .2s,background .2s,box-shadow .2s;
+  margin-top:32px
+}
+.btn:hover{transform:translateY(-2px);background:#965f62;box-shadow:0 11px 24px rgba(169,111,112,.26)}
+.btn:focus-visible{outline:3px solid #dcb3ae;outline-offset:4px}
+.text-link{border:0;background:transparent;color:var(--muted);font-size:12px;margin-top:17px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.wish-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;width:100%;max-width:390px;margin-top:27px}
+.wish{background:#faf4ef;border:1px solid #f0e5dc;border-radius:16px;padding:18px 12px;min-height:116px}
+.wish .emoji{font-size:22px;display:block;margin-bottom:9px}
+.wish strong{display:block;font-family:Georgia,serif;font-size:16px;font-weight:400;color:#66544c;margin-bottom:5px}
+.wish small{color:#927f75;font-size:11px;line-height:1.5}
+.note{max-width:370px;background:#faf5f0;border:1px solid #eee2d9;border-radius:18px;padding:23px 22px;margin-top:25px;color:#76665d;font-family:Georgia,serif;font-size:16px;line-height:1.85}
+.signature{font-family:Georgia,serif;font-style:italic;color:var(--rose-dark);font-size:20px;margin-top:25px}
+.footer{font-size:10px;letter-spacing:.12em;color:#a18e84;text-align:center;margin-top:15px}
+.sparkle{position:absolute;color:#d4a6a0;animation:twinkle 2.6s ease-in-out infinite}
+.s1{top:16%;right:14%;font-size:17px}.s2{bottom:19%;left:12%;font-size:13px;animation-delay:.8s}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.heart{position:fixed;bottom:-30px;pointer-events:none;z-index:5;animation:floatUp 3.4s ease-in forwards;color:#c98f8b}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(max-width:480px){body{padding:13px}.card{min-height:590px;padding:30px 22px}.topline{font-size:9px}.wish{padding:15px 8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topline"><span class="brand">a little something ♡</span><span>19 · 11 · 2026</span></div>
+  <div class="progress" aria-label="Tiến trình"><span id="progress"></span></div>
+  <section class="card" aria-live="polite">
+    <span class="sparkle s1">✧</span><span class="sparkle s2">✦</span>
+
+    <div class="screen active" data-screen="0">
+      <div class="eyebrow">A special day for you</div>
+      <div class="flower" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none">
+          <g fill="#d9aaa3" stroke="#c98f8b" stroke-width="1.2">
+            <ellipse cx="50" cy="29" rx="11" ry="20"/><ellipse cx="50" cy="29" rx="11" ry="20" transform="rotate(72 50 50)"/>
+            <ellipse cx="50" cy="29" rx="11" ry="20" transform="rotate(144 50 50)"/><ellipse cx="50" cy="29" rx="11" ry="20" transform="rotate(216 50 50)"/>
+            <ellipse cx="50" cy="29" rx="11" ry="20" transform="rotate(288 50 50)"/>
+          </g><circle cx="50" cy="50" r="8" fill="#e7c58e"/>
+          <path d="M50 59 C50 72 46 77 42 84" stroke="#9caa8a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M45 73 C32 65 27 72 34 79 C40 80 44 77 45 73Z" fill="#b7c2a8"/>
+        </svg>
+      </div>
+      <h1>Hey, you.</h1>
+      <p class="subtitle">Hôm nay có điều nhỏ xinh dành cho anh.</p>
+      <p class="copy">Không phải điều gì quá lớn lao đâu. Chỉ là em muốn ngày hôm nay của anh có thêm một chút niềm vui.</p>
+      <button class="btn" onclick="nextScreen()">Mở món quà nhỏ ♡</button>
+    </div>
+
+    <div class="screen" data-screen="1">
+      <div class="eyebrow">Just a little reminder</div>
+      <h2>Em muốn anh biết...</h2>
+      <p class="copy" style="font-family:Georgia,serif;font-size:20px;color:#a96f70;line-height:1.65;margin-top:25px">
+        Anh xứng đáng với những điều tốt đẹp, không chỉ hôm nay mà cả những ngày bình thường nữa.
+      </p>
+      <p class="copy">Mong anh luôn nhìn thấy giá trị của bản thân, tự tin với những lựa chọn của mình và có đủ bình yên để tận hưởng hành trình đang đi.</p>
+      <button class="btn" onclick="nextScreen()">Điều ước tiếp theo →</button>
+    </div>
+
+    <div class="screen" data-screen="2">
+      <div class="eyebrow">A few wishes, from me to you</div>
+      <h2>Em chúc anh...</h2>
+      <div class="wish-grid">
+        <div class="wish"><span class="emoji">☀️</span><strong>Thật nhiều niềm vui</strong><small>Để mỗi ngày đều có điều đáng mong chờ.</small></div>
+        <div class="wish"><span class="emoji">🌿</span><strong>Luôn khỏe mạnh</strong><small>Đủ năng lượng cho những điều anh yêu.</small></div>
+        <div class="wish"><span class="emoji">🚀</span><strong>Ngày càng thành công</strong><small>Vững vàng với mục tiêu của riêng mình.</small></div>
+        <div class="wish"><span class="emoji">✨</span><strong>Luôn là chính anh</strong><small>Tự tin, thoải mái và thật rạng rỡ.</small></div>
+      </div>
+      <button class="btn" onclick="nextScreen()">Còn một điều nữa... ♡</button>
+    </div>
+
+    <div class="screen" data-screen="3">
+      <div class="eyebrow">One last thing</div>
+      <div class="flower" aria-hidden="true" style="width:105px;height:105px;margin-bottom:24px">
+        <span style="font-size:43px">♡</span>
+      </div>
+      <h2>Chúc mừng ngày<br>Quốc tế Đàn ông!</h2>
+      <div class="note">Mong anh luôn có thật nhiều lý do để mỉm cười, có người đồng hành khi cần và luôn cảm thấy tự hào về chính mình.<br><br>Hôm nay, em gửi anh một lời chúc thật chân thành — cùng một chút quan tâm nho nhỏ.</div>
+      <div class="signature">Một người đặc biệt ♡</div>
+      <button class="text-link" onclick="restart()">Đọc lại từ đầu</button>
+    </div>
+  </section>
+  <div class="footer">MADE WITH A LITTLE WARMTH · JUST FOR YOU</div>
+</main>
+<script>
+let current=0;
+const screens=[...document.querySelectorAll('.screen')];
+const progress=document.getElementById('progress');
+function showScreen(n){
+  current=n;
+  screens.forEach((s,i)=>s.classList.toggle('active',i===n));
+  progress.style.width=((n+1)*25)+'%';
+  if(n===3) makeHearts();
+}
+function nextScreen(){if(current<3)showScreen(current+1)}
+function restart(){showScreen(0);window.scrollTo({top:0,behavior:'smooth'})}
+function makeHearts(){
+  const symbols=['♡','♥','✧'];
+  for(let i=0;i<13;i++){
+    const el=document.createElement('span');el.className='heart';
+    el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=(5+Math.random()*90)+'vw';
+    el.style.fontSize=(12+Math.random()*15)+'px';
+    el.style.animationDelay=(Math.random()*.9)+'s';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),4500);
+  }
+}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'&&current<3)nextScreen()});
+</script>
+</body>
+</html>
